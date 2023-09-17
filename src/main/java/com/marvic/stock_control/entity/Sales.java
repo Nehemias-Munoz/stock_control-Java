@@ -14,13 +14,17 @@ public class Sales {
     private long id;
     @Column
     private LocalDate date;
+    //Relation Sales - Product
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "id_product", nullable = false)
-    private int productId;
+    private Product product;
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unitary_price", nullable = false)
     private double unitaryPrice;
-    @Column(name = "id_client", nullable = false)
-    private int clientId;
+    //Relation Sales - Costumer
+    @Column(name = "id_costumer", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Costumer costumer;
 
 }

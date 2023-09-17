@@ -2,6 +2,7 @@ package com.marvic.stock_control.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.ManyToAny;
 
 import java.time.LocalDate;
 @Data
@@ -13,12 +14,16 @@ public class Shopping {
     private long id;
     @Column
     private LocalDate date;
-    @Column(name = "id_product", nullable = false)
-    private int productId;
+    //Relation Shopping - Product
+    @ManyToOne
+    @JoinColumn(name = "id_product", nullable = false)
+    private Product product;
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unitary_price", nullable = false)
     private double unitaryPrice;
-    @Column(name = "id_supplier",nullable = false)
-    private int supplierId;
+    //Relation Shopping-Supplier
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_supplier", nullable = false)
+    private Supplier supplier;
 }
