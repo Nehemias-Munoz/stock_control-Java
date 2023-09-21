@@ -4,6 +4,7 @@ import com.marvic.stock_control.entity.Supplier;
 import com.marvic.stock_control.model.Response;
 import com.marvic.stock_control.repository.ISupplierRepository;
 import com.marvic.stock_control.service.ISupplier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import static java.time.LocalDateTime.now;
 @Service
 public class SupplierImpl implements ISupplier {
 
+    @Autowired
     ISupplierRepository iSupplierRepository;
     @Override
     public ResponseEntity<Response> getSupplierList() {

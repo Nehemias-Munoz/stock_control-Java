@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.ManyToAny;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 @Data
 @Table
 @Entity
@@ -15,9 +17,9 @@ public class Shopping {
     @Column
     private LocalDate date;
     //Relation Shopping - Product
-    @ManyToOne
-    @JoinColumn(name = "id_product", nullable = false)
-    private Product product;
+    @ManyToMany(mappedBy = "shoppingList")
+    private ArrayList<Product> productList;
+
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unitary_price", nullable = false)

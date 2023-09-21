@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Table
@@ -15,16 +17,15 @@ public class Sales {
     @Column
     private LocalDate date;
     //Relation Sales - Product
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "id_product", nullable = false)
-    private Product product;
+    @ManyToMany(mappedBy = "salesList")
+    private List<Product> productsList = new ArrayList<>();
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unitary_price", nullable = false)
     private double unitaryPrice;
     //Relation Sales - Costumer
-    @Column(name = "id_costumer", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_costumer", nullable = false)
     private Costumer costumer;
 
 }
